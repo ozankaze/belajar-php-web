@@ -4,7 +4,8 @@ $numbers = $_GET['numbers'];
 $total = 0;
 
 foreach ($numbers as $number) {
-    $total += $number;
+    // $total += $number;
+    $total = $total + $number;
 }
 
 ?>
