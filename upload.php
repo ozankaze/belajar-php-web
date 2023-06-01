@@ -3,13 +3,32 @@
 // 109
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $file_name = $_FILES['upload_file']['name'];
     $file_type = $_FILES['upload_file']['type'];
     $file_size = $_FILES['upload_file']['size'];
     $file_tmp_name = $_FILES['upload_file']['tmp_name'];
     $file_error = $_FILES['upload_file']['error'];
 
-    move_uploaded_file($file_tmp_name, "assets/" . $file_name);
+    if ($file_error == 0) {
+        
+        if ($file_size < 1000000) {
+            
+            if ($file_type == 'image/jpeg') {
+                move_uploaded_file($file_tmp_name, "assets/" . $file_name);
+                echo 'Berhasil';
+            } else {
+                echo 'Format harus JPG';
+            }
+
+        } else {
+            echo 'File kegedean';
+        }
+
+    } else {
+        echo 'Ada error';
+    }
+   
 }
 
 ?>
